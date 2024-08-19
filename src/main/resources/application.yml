@@ -1,0 +1,14 @@
+spring:
+    application:
+        name: ${SPRING_APP_NAME:securitybasics}
+    devtools:
+        add-properties: false
+
+    security:
+        user:
+            name: ${SECURITY_USERNAME:santy}
+            password: ${SECURITY_PASSWORD:12345}
+
+logging:
+  level:
+    org.springframework.security: TRACE
