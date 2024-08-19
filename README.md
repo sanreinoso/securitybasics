@@ -1,4 +1,4 @@
-# Santi Reinosos - Spring Security Implementations
+# Santi Reinoso - Spring Security Implementations
 
 ## Descripción
 Este repositorio contiene ejemplos y diferentes implementaciones de Spring Security que cubren varios mecanismos de autenticación y autorización, incluyendo:
