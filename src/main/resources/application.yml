@@ -4,10 +4,10 @@ spring:
     devtools:
         add-properties: false
 
-    security:
-        user:
-            name: ${SECURITY_USERNAME:santy}
-            password: ${SECURITY_PASSWORD:12345}
+    #security:
+    #    user:
+    #        name: ${SECURITY_USERNAME:santy}
+    #        password: ${SECURITY_PASSWORD:12345}
 
 logging:
   level:
