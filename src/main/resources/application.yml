@@ -1,10 +1,20 @@
 spring:
     application:
-        name: ${SPRING_APP_NAME:securitybasics}
+        name: ${SPRING_APP_NAME}
     devtools:
         add-properties: false
+    datasource:
+        url: ${SPRING_DATASOURCE_URL}
+        username: ${SPRING_DATASOURCE_USERNAME}
+        password: ${SPRING_DATASOURCE_PASSWORD}
+        #driver-class-name: ${SPRING_DATASOURCE_DRIVER_CLASS_NAME:com.mysql.cj.jdbc.Driver}
+    jpa:
+      show-sql: true
+      properties:
+        hibernate:
+          format_sql: true
 
-    #security:
+  #security:
     #    user:
     #        name: ${SECURITY_USERNAME:santy}
     #        password: ${SECURITY_PASSWORD:12345}
