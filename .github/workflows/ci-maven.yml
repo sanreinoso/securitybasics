@@ -50,8 +50,7 @@ jobs:
     - name: Build Docker Image
       run: |
         cd $SECTION
-        pwd
-        docker build -t ${{ vars.DOCKER_REPO }}/$SECTION:$GITHUB_SHA -t ${{ vars.DOCKER_REPO }}/$SECTION:latest -f $SECTION/docker/Dockerfile .
+        docker build -t ${{ vars.DOCKER_REPO }}/$SECTION:$GITHUB_SHA -t ${{ vars.DOCKER_REPO }}/$SECTION:latest -f docker/Dockerfile .
 
     - name: Push Docker Image
       run: |
