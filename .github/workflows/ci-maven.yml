@@ -17,9 +17,11 @@ jobs:
         cache: maven
     - name: Determine section from branch name
       run: |
-          section=$(echo "${GITHUB_REF#refs/heads/}" | cut -d '/' -f 3) 
-          export SECTION=$section
-          echo "Section:" $SECTION 
+        section=$(echo "${GITHUB_REF#refs/heads/}" | cut -d '/' -f 3) 
+        export SECTION=$section
+    - name: Print section
+      run: |
+        echo "Section: $SECTION"
     - name: Build with Maven
       run: mvn -B package --file $SECTION/pom.xml
 
