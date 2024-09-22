@@ -5,8 +5,10 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
+  docker_push:
     runs-on: ubuntu-latest
+    env:
+      REPO_NAME: 'securitybasics'
     steps:
     - name: Log in to Docker Hub
       uses: docker/login-action@v2
@@ -14,13 +16,15 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
 
-    - name: Determine section from branch name
+    - name: Determine repo name
       run: |
-        section=$(echo "${GITHUB_HEAD_REF}" | cut -d '/' -f 1) 
+        section=$(echo "${GITHUB_REPOSITORY}" | cut -d '/' -f 1) 
         echo "SECTION=$section" >> $GITHUB_ENV
 
     - name: Build Docker Image
-      run: docker build -t ${{ vars.DOCKER_REPO }}/$SECTION:$GITHUB_SHA
+      run: docker build -t ${{ vars.DOCKER_REPO }}:$GITHUB_SHA -t ${{ vars.DOCKER_REPO }}:latest
 
     - name: Push Docker Image
-      run: docker push ${{ vars.DOCKER_REPO }}/$SECTION:$GITHUB_SHA
+      run: |
+        docker push ${{ vars.DOCKER_REPO }}:$GITHUB_SHA
+        docker push ${{ vars.DOCKER_REPO }}:$latest
