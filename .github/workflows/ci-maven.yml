@@ -41,6 +41,10 @@ jobs:
       run: |
         section=$(echo "${GITHUB_HEAD_REF}" | cut -d '/' -f 1) 
         echo "SECTION=$section" >> $GITHUB_ENV
+    
+    - name: Print section
+      run: |
+        echo "Section: $SECTION"
 
     - name: Build Docker Image
       run: docker build -t ${{ vars.DOCKER_REPO }}/$SECTION:$GITHUB_SHA -t ${{ vars.DOCKER_REPO }}/$SECTION:latest -f $SECTION/docker/Dockerfile .
