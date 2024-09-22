@@ -15,7 +15,7 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
 
     - name: Build Docker Image
-      run: docker build -t ${{ vars.DOCKER_REPO }}/$SECTION:$GITHUB_SHA $SECTION
+      run: docker build -t ${{ vars.DOCKER_REPO }}/$SECTION:$GITHUB_SHA
 
     - name: Push Docker Image
       run: docker push ${{ vars.DOCKER_REPO }}/$SECTION:$GITHUB_SHA
