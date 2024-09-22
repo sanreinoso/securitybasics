@@ -15,6 +15,10 @@ jobs:
         java-version: '21'
         distribution: 'temurin'
         cache: maven
+    - name: Get branch name for pull request
+      if: ${{ github.event_name == 'pull_request' }}
+      run: |
+        echo "Branch: $GITHUB_HEAD_REF"
     - name: Determine section from branch name
       run: |
         section=$(echo "${GITHUB_REF#refs/heads/}" | cut -d '/' -f 1) 
