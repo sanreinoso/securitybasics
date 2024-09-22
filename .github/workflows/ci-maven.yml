@@ -50,12 +50,12 @@ jobs:
     - name: Build Docker Image
       run: |
         cd $SECTION
-        docker build -t ${{ vars.DOCKER_REPO }}/$SECTION:$GITHUB_SHA -t ${{ vars.DOCKER_REPO }}/$SECTION:latest -f docker/Dockerfile .
+        docker build -t ${{ vars.DOCKER_REPO }}:$SECTION -t ${{ vars.DOCKER_REPO }}:latest -f docker/Dockerfile .
 
     - name: Push Docker Image
       run: |
-        docker push ${{ vars.DOCKER_REPO }}/$SECTION:$GITHUB_SHA
-        docker push ${{ vars.DOCKER_REPO }}/$SECTION:latest
+        docker push ${{ vars.DOCKER_REPO }}:$SECTION
+        docker push ${{ vars.DOCKER_REPO }}:latest
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
     #- name: Update dependency graph
