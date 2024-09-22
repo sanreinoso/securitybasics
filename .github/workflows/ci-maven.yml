@@ -18,7 +18,7 @@ jobs:
     - name: Determine section from branch name
       run: |
         section=$(echo "${GITHUB_REF#refs/heads/}" | cut -d '/' -f 3) 
-        export SECTION=$section
+        echo "SECTION=$section" >> $GITHUB_ENV
     - name: Print section
       run: |
         echo "Section: $SECTION"
