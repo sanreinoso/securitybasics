@@ -48,7 +48,9 @@ jobs:
         echo "Section: $SECTION"
 
     - name: Build Docker Image
-      run: docker build -t ${{ vars.DOCKER_REPO }}/$SECTION:$GITHUB_SHA -t ${{ vars.DOCKER_REPO }}/$SECTION:latest -f $SECTION/docker/Dockerfile .
+      run: |
+        cd $SECTION
+        docker build -t ${{ vars.DOCKER_REPO }}/$SECTION:$GITHUB_SHA -t ${{ vars.DOCKER_REPO }}/$SECTION:latest -f $SECTION/docker/Dockerfile .
 
     - name: Push Docker Image
       run: |
