@@ -17,7 +17,7 @@ jobs:
         cache: maven
     - name: Determine section from branch name
       run: |
-        section=$(echo "${GITHUB_REF#refs/heads/}" | cut -d '/' -f 3) 
+        section=$(echo "${GITHUB_REF#refs/heads/}" | cut -d '/' -f 1) 
         echo "SECTION=$section" >> $GITHUB_ENV
     - name: Print section
       run: |
