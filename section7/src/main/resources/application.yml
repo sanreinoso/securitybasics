@@ -18,8 +18,11 @@ spring:
       properties:
         hibernate:
           format_sql: true
-
-  #security:
+server:
+  servlet:
+    session:
+      timeout: ${SESSION_TIMEOUT:20m}
+    #security:
     #    user:
     #        name: ${SECURITY_USERNAME:santy}
     #        password: ${SECURITY_PASSWORD:12345}

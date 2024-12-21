@@ -16,7 +16,10 @@ spring:
       properties:
         hibernate:
           format_sql: false
-
+server:
+  servlet:
+    session:
+      timeout: ${SESSION_TIMEOUT:1m}
   #security:
     #    user:
     #        name: ${SECURITY_USERNAME:santy}
@@ -25,3 +28,4 @@ spring:
 logging:
   level:
     org.springframework.security: ERROR
+    org.springframework.boot: INFO

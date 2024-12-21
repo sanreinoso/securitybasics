@@ -1,15 +1,13 @@
 package com.sanreinoso.securityspring.config;
 
+import com.sanreinoso.securityspring.exceptionhandling.CustomAccessDeniedHandler;
+import com.sanreinoso.securityspring.exceptionhandling.CustomAuthenticationEntryPoint;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
-
-import javax.sql.DataSource;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
@@ -18,13 +16,18 @@ public class ProjectSecurityConfig {
 
     @Bean
     SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
-        http.requiresChannel(rcc -> rcc.anyRequest().requiresInsecure()) //Only HTTP
+        http.sessionManagement(smc -> smc.invalidSessionUrl("/invalidSession"))
+                .requiresChannel(rcc -> rcc.anyRequest().requiresInsecure()) //Only HTTP
                 .csrf(csrfConfig -> csrfConfig.disable())
                 .authorizeHttpRequests((requests) -> requests
                 .requestMatchers("/myAccount", "/myBalance", "/myCards", "myLoans").authenticated()
-                .requestMatchers("/register","/contact", "/notices", "/error").permitAll());
+                .requestMatchers("/register","/contact", "/notices", "/error", "/invalidSession").permitAll()
+                        .requestMatchers("/actuator/**").permitAll());
         http.formLogin(withDefaults());
-        http.httpBasic(withDefaults());
+        http.httpBasic(basicConfig
+                -> basicConfig.authenticationEntryPoint(new CustomAuthenticationEntryPoint()));
+        http.exceptionHandling(exceptionHandling ->
+                exceptionHandling.accessDeniedHandler(new CustomAccessDeniedHandler()));
         return http.build();
     }
 
