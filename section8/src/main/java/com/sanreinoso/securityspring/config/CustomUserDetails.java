@@ -30,6 +30,6 @@ public class CustomUserDetails implements UserDetailsService {
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
 
         List<GrantedAuthority> authorities = List.of(new SimpleGrantedAuthority(customer.getRole()));
-        return new User(customer.getEmail(), customer.getPassword(), authorities);
+        return new User(customer.getEmail(), customer.getPwd(), authorities);
     }
 }

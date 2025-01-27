@@ -1,14 +1,27 @@
 package com.sanreinoso.securityspring.controller;
-
+import com.sanreinoso.securityspring.model.Loans;
+import com.sanreinoso.securityspring.repository.LoanRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
+@RequiredArgsConstructor
 public class LoansController {
 
-    @GetMapping("/myLoans")
-    public String getLoansDetails() {
+    private final LoanRepository loanRepository;
 
-        return "Loans Details";
+    @GetMapping("/myLoans")
+    public List<Loans> getLoanDetails(@RequestParam long id) {
+        List<Loans> loans = loanRepository.findByCustomerIdOrderByStartDtDesc(id);
+        if (loans != null) {
+            return loans;
+        } else {
+            return null;
+        }
     }
+
 }
