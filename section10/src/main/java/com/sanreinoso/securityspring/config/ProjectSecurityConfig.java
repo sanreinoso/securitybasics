@@ -2,6 +2,8 @@ package com.sanreinoso.securityspring.config;
 
 import com.sanreinoso.securityspring.exceptionhandling.CustomAccessDeniedHandler;
 import com.sanreinoso.securityspring.exceptionhandling.CustomAuthenticationEntryPoint;
+import com.sanreinoso.securityspring.filter.AuthoritiesLoggingAfterFilter;
+import com.sanreinoso.securityspring.filter.CsrfCookieFilter;
 import com.sanreinoso.securityspring.filter.RequestValidationBeforeFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.context.annotation.Bean;
@@ -14,7 +16,6 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.security.web.csrf.CsrfTokenRequestAttributeHandler;
-import org.springframework.security.web.csrf.CsrfTokenRequestHandler;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 
@@ -52,6 +53,7 @@ public class ProjectSecurityConfig {
                     .ignoringRequestMatchers("/contact", "/register"))
             .addFilterAfter(new CsrfCookieFilter(), BasicAuthenticationFilter.class)
                 .addFilterBefore(new RequestValidationBeforeFilter(), BasicAuthenticationFilter.class)
+                .addFilterAfter(new AuthoritiesLoggingAfterFilter(), BasicAuthenticationFilter.class)
             .authorizeHttpRequests((requests) -> requests
                     .requestMatchers("/myAccount").hasAuthority("VIEWACCOUNT")
                     .requestMatchers("/myBalance", "/myCards", "myLoans").hasAnyAuthority("VIEWACCOUNT", "VIEWBALANCE", "VIEWCARDS", "VIEWLOANS")

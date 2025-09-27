@@ -7,7 +7,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 
 @SpringBootApplication
-@EnableWebSecurity(debug = true)
+@EnableWebSecurity(debug = false)
 public class SecurityBasicsApplication {
 
 	public static void main(String[] args) {
