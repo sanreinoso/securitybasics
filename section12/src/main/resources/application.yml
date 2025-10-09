@@ -1,0 +1,24 @@
+spring:
+    config:
+      import: application_prod.yml
+    profiles:
+      active: prod
+
+    application:
+        name: ${SPRING_APP_NAME:securitybasics}
+    devtools:
+        add-properties: false
+    datasource:
+        url: ${SPRING_DATASOURCE_URL:jdbc:mysql://localhost:3306/BankDB}
+        username: ${SPRING_DATASOURCE_USERNAME:root}
+        password: ${SPRING_DATASOURCE_PASSWORD:mysql_password}
+
+    jpa:
+      show-sql: true
+      properties:
+        hibernate:
+          format_sql: true
+server:
+  servlet:
+    session:
+      timeout: ${SESSION_TIMEOUT:20m}

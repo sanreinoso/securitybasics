@@ -1,0 +1,27 @@
+spring:
+    config:
+        activate:
+            on-profile: prod
+    application:
+        name: ${SPRING_APP_NAME:securitybasics}
+    devtools:
+        add-properties: false
+    datasource:
+        url: ${SPRING_DATASOURCE_URL:jdbc:mysql://localhost:3306/BankDB}
+        username: ${SPRING_DATASOURCE_USERNAME:root}
+        password: ${SPRING_DATASOURCE_PASSWORD:mysql_password}
+
+    jpa:
+      show-sql: false
+      properties:
+        hibernate:
+          format_sql: false
+server:
+  servlet:
+    session:
+      timeout: ${SESSION_TIMEOUT:1m}
+
+logging:
+  level:
+    org.springframework.security: ERROR
+    org.springframework.boot: INFO
