@@ -1,6 +1,13 @@
-drop table `authorities`;
-drop table `users`;
-drop table `customer`;
+DROP TABLE `authorities`;
+DROP TABLE `users`;
+DROP TABLE `customer`;
+DROP TABLE `accounts`;
+DROP TABLE `account_transactions`;
+DROP TABLE `loans`;
+DROP TABLE `cards`;
+DROP TABLE `notice_details`;
+DROP TABLE `contact_messages`;
+DROP TABLE `authorities`;
 
 CREATE TABLE `customer` (
   `customer_id` int NOT NULL AUTO_INCREMENT,
@@ -184,10 +191,5 @@ INSERT INTO `authorities` (`customer_id`, `name`)
  INSERT INTO `authorities` (`customer_id`, `name`)
    VALUES (1, 'VIEWBALANCE');
 
-DELETE FROM `authorities`;
 
- INSERT INTO `authorities` (`customer_id`, `name`)
-  VALUES (1, 'ROLE_USER');
 
- INSERT INTO `authorities` (`customer_id`, `name`)
-  VALUES (1, 'ROLE_ADMIN');
