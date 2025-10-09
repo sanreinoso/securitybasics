@@ -9,7 +9,7 @@ spring:
     devtools:
         add-properties: false
     datasource:
-        url: ${SPRING_DATASOURCE_URL:jdbc:mysql://localhost:3306/BANK}
+        url: ${SPRING_DATASOURCE_URL:jdbc:mysql://localhost:3306/BankDB}
         username: ${SPRING_DATASOURCE_USERNAME:root}
         password: ${SPRING_DATASOURCE_PASSWORD:mysql_password}
 
