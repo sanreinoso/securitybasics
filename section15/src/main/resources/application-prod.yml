@@ -10,12 +10,16 @@ spring:
         url: ${SPRING_DATASOURCE_URL:jdbc:mysql://localhost:3306/BankDB}
         username: ${SPRING_DATASOURCE_USERNAME:root}
         password: ${SPRING_DATASOURCE_PASSWORD:mysql_password}
-
     jpa:
       show-sql: false
       properties:
         hibernate:
           format_sql: false
+    security:
+      oauth2:
+        resourceserver:
+          jwt:
+            jwk-set-uri: ${JWK_SET_URI}
 server:
   servlet:
     session:
