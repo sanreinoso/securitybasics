@@ -20,6 +20,12 @@ spring:
         resourceserver:
           jwt:
             jwk-set-uri: ${JWK_SET_URI}
+          opaquetoken:
+            introspection-uri:
+            client-id:
+            client-secret: 
+
+
 server:
   servlet:
     session:
